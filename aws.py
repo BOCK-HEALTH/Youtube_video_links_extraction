@@ -20,8 +20,15 @@ def upload_to_s3(file_path, bucket_name, s3_key):
 # ========== Step 1: Download YouTube Video ==========
 def download_youtube_video(url, output_path='video.mp4'):
     print("[*] Downloading video...")
-    subprocess.run(['yt-dlp', '-f', 'best', '-o', output_path, url], check=True)
+    subprocess.run([
+        'yt-dlp',
+        '--cookies', 'cookies.txt',
+        '-f', 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
+        '-o', output_path,
+        url
+    ], check=True)
     print("[*] Video downloaded.")
+
 
 # ========== Step 2: Extract Audio ==========
 def extract_audio(video_path='video.mp4', audio_path='audio.wav'):
@@ -32,7 +39,9 @@ def extract_audio(video_path='video.mp4', audio_path='audio.wav'):
     ], check=True)
     print("[*] Audio extracted.")
 
+
 # ========== Step 3: Transcribe with Whisper ==========
+
 def transcribe_audio(audio_path='audio.wav'):
     print("[*] Transcribing audio with Vosk...")
 
@@ -75,7 +84,7 @@ def remove_local_file(path):
 
 # ========== MAIN ==========
 if __name__ == "__main__":
-    BUCKET_NAME = 'bockmedia'
+    BUCKET_NAME = 'youtubemedia1'
 
     youtube_url = input("Enter YouTube URL: ").strip()
 
