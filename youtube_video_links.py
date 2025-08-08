@@ -3,7 +3,7 @@ import time
 from typing import List
 import requests
 from googleapiclient.discovery import build
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 class YouTubeScraper:
     def __init__(self, api_key: str):
@@ -54,14 +54,13 @@ class YouTubeScraper:
 
 
 def main():
-    # load_dotenv()
-    api_key = "AIzaSyBvSYm4TBbwCZUwpp_306UuXbkbB6NBZcE"
-    # ec2_endpoint = os.getenv('EC2_ENDPOINT')
-    channel_id = "UCb7fgFCDfeqBUIqS0AFBikQ"
+    load_dotenv()
 
+    api_key = "AIzaSyBvSYm4TBbwCZUwpp_306UuXbkbB6NBZcE"
+    channel_id = input("Enter YouTube channel ID: ").strip()
 
     if not all([api_key, channel_id]):
-        print("API key or channel ID missing in .env file")
+        print("API key or channel ID missing.")
         return
 
     scraper = YouTubeScraper(api_key)
