@@ -3,7 +3,7 @@ import time
 from typing import List
 import requests
 from googleapiclient.discovery import build
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 class YouTubeScraper:
     def __init__(self, api_key: str):
@@ -54,10 +54,10 @@ class YouTubeScraper:
 
 
 def main():
-    load_dotenv()
-    api_key = os.getenv('API_KEY')
+    # load_dotenv()
+    api_key = "AIzaSyBvSYm4TBbwCZUwpp_306UuXbkbB6NBZcE"
     # ec2_endpoint = os.getenv('EC2_ENDPOINT')
-    channel_id = os.getenv('CHANNEL_ID')
+    channel_id = "UCb7fgFCDfeqBUIqS0AFBikQ"
 
 
     if not all([api_key, channel_id]):
@@ -76,7 +76,7 @@ def main():
 
     print(f"\nFound {len(video_links)} video links. Saved to youtube_video_links.txt.\n")
 
-    
+
     # The following code for sending links to EC2 and polling status is commented out as per user request.
     # max_retries = 5
     # delay_between_links = 5  # seconds
@@ -139,4 +139,4 @@ if __name__ == '__main__':
     main()
 
 
-# wget https://raw.githubusercontent.com/Samuel-0316/EC2_S3_Pipeline/main/aws.py
+# wget https://raw.githubusercontent.com/Samuel-0316/EC2_S3_Pipeline/youtube_video_links.py
